@@ -8,7 +8,7 @@ messenger4j:
 
 logging:
   level:
-    com.github.messenger4j: INFO
+    com.github.messenger4j: debug
 
 spring:
   datasource:
