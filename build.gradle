@@ -8,6 +8,11 @@ group = 'com.boaviagem'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+compileJava {
+	sourceCompatibility = '1.8'
+	targetCompatibility = '1.8'
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -19,8 +24,8 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.github.messenger4j:messenger4j:1.1.0'
@@ -31,6 +36,7 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	testCompile group: 'com.h2database', name: 'h2', version: '1.3.148'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 

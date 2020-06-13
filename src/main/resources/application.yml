@@ -2,15 +2,19 @@ server:
   port: 9090
 
 messenger4j:
-  appSecret = ${MESSENGER_APP_SECRET}
-  verifyToken = ${MESSENGER_VERIFY_TOKEN}
-  pageAccessToken = ${MESSENGER_PAGE_ACCESS_TOKEN}
+  appSecret: ${MESSENGER_APP_SECRET:'secret_app'}
+  verifyToken: ${MESSENGER_VERIFY_TOKEN:'MESSENGER_VERIFY_TOKEN'}
+  pageAccessToken: ${MESSENGER_PAGE_ACCESS_TOKEN:'MESSENGER_PAGE_ACCESS_TOKEN'}
 
 logging:
   level:
-    com.github.messenger4j=INFO
+    com.github.messenger4j: INFO
 
 spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/db
+    username:
+    password:
   jpa:
     hibernate:
       ddl-auto: create

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class MessagerConfig {
+public class MessengerConfig {
 
     @Bean
     public Messenger messenger(@Value("${messenger4j.pageAccessToken}") String pageAccessToken,
