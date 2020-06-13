@@ -1,4 +1,4 @@
-package com.boaviagem.boaviagem.config;
+package br.com.infotrecho.config;
 
 import com.github.messenger4j.Messenger;
 import org.springframework.beans.factory.annotation.Value;

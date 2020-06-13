@@ -1,13 +1,13 @@
-package com.boaviagem.boaviagem;
+package br.com.infotrecho;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BoaViagemApplication {
+public class InfotrechoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BoaViagemApplication.class, args);
+		SpringApplication.run(InfotrechoApplication.class, args);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.boaviagem.boaviagem.service;
+package br.com.infotrecho.service;
 
 import static com.github.messenger4j.Messenger.CHALLENGE_REQUEST_PARAM_NAME;
 import static com.github.messenger4j.Messenger.MODE_REQUEST_PARAM_NAME;

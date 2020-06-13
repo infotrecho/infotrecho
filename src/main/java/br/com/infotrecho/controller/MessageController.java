@@ -1,4 +1,4 @@
-package com.boaviagem.boaviagem.controller;
+package br.com.infotrecho.controller;
 
 import static com.github.messenger4j.Messenger.CHALLENGE_REQUEST_PARAM_NAME;
 import static com.github.messenger4j.Messenger.MODE_REQUEST_PARAM_NAME;
@@ -6,7 +6,7 @@ import static com.github.messenger4j.Messenger.SIGNATURE_HEADER_NAME;
 import static com.github.messenger4j.Messenger.VERIFY_TOKEN_REQUEST_PARAM_NAME;
 import static java.util.Optional.of;
 
-import com.boaviagem.boaviagem.service.MessageService;
+import br.com.infotrecho.service.MessageService;
 import com.github.messenger4j.Messenger;
 import com.github.messenger4j.exception.MessengerVerificationException;
 import lombok.extern.slf4j.Slf4j;
