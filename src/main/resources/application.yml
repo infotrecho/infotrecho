@@ -1,0 +1,20 @@
+server:
+  port: 9090
+
+messenger4j:
+  appSecret = ${MESSENGER_APP_SECRET}
+  verifyToken = ${MESSENGER_VERIFY_TOKEN}
+  pageAccessToken = ${MESSENGER_PAGE_ACCESS_TOKEN}
+
+logging:
+  level:
+    com.github.messenger4j=INFO
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect.storage_engine: innodb
+        dialect: org.hibernate.dialect.MySQL57Dialect
