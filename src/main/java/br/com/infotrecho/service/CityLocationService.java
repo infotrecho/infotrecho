@@ -38,4 +38,22 @@ public class CityLocationService {
         });
         return cities;
     }
+
+    public CityDataResponse getCityDataFromRegionCode(String city, String regionCode) throws IOException {
+        log.info("Find city frm region code {} {}", city, regionCode);
+        List<CityDataResponse> cities = this.getCityData(city);
+        final CityDataResponse ci = new CityDataResponse();
+        for (CityDataResponse c : cities) {
+            if (c.getRegionCode().equalsIgnoreCase(regionCode)) {
+                return CityDataResponse
+                        .builder()
+                        .name(c.getName())
+                        .latitude(c.getLatitude())
+                        .longitude(c.getLongitude())
+                        .regionCode(c.getRegionCode())
+                        .build();
+            }
+        }
+        return ci;
+    }
 }
