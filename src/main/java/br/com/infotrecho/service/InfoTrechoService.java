@@ -5,6 +5,7 @@ import br.com.infotrecho.client.infotrecho.InfoTrechoClient;
 import br.com.infotrecho.client.infotrecho.request.DriverRequest;
 import br.com.infotrecho.client.infotrecho.request.TripRequest;
 import br.com.infotrecho.client.infotrecho.response.DriverResponse;
+import br.com.infotrecho.client.infotrecho.response.EventResponse;
 import br.com.infotrecho.client.infotrecho.response.TripResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,11 @@ import java.util.List;
 
 @Service
 @Log4j2
-public class DriversService {
+public class InfoTrechoService {
     private final InfoTrechoClient infoTrechoClient;
     private final CityLocationService cityLocationService;
 
-    public DriversService(InfoTrechoClient infoTrechoClient, CityLocationService cityLocationService) {
+    public InfoTrechoService(InfoTrechoClient infoTrechoClient, CityLocationService cityLocationService) {
         this.infoTrechoClient = infoTrechoClient;
         this.cityLocationService = cityLocationService;
     }
@@ -43,5 +44,10 @@ public class DriversService {
         tripRequest.setOriginGeocode(originCoords);
 
         return infoTrechoClient.saveTrip(tripRequest);
+    }
+
+    public List<EventResponse> listEvents(String latitude, String longitude) throws IOException {
+        log.info("list events latitude {} longitude {}", latitude, longitude);
+        return infoTrechoClient.listEvents(latitude, longitude);
     }
 }
