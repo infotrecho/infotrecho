@@ -45,7 +45,7 @@ public class InfoTrechoClient extends GenericClient {
         try (Response response = this.getHttpClient().newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 String errorResponse = response.body().string();
-                log.error("==== Erro retornado da InfoTrechoPAI. Code: {} Response: {}", response.code(), errorResponse);
+                log.error("==== Erro retornado da InfoTrechoAPI. Code: {} Response: {}", response.code(), errorResponse);
                 throw new RuntimeException("Erro ao executar endpoint drivers");
             } else {
                 return this.getObjectMapper().readValue(response.body().byteStream(), DriverResponse.class);
@@ -70,7 +70,7 @@ public class InfoTrechoClient extends GenericClient {
         try (Response response = this.getHttpClient().newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 String errorResponse = response.body().string();
-                log.error("==== Erro retornado da InfoTrechoPAI. Code: {} Response: {}", response.code(), errorResponse);
+                log.error("==== Erro retornado da InfoTrechoAPI. Code: {} Response: {}", response.code(), errorResponse);
                 throw new RuntimeException("Erro ao executar endpoint trips");
             } else {
                 return this.getObjectMapper().readValue(response.body().byteStream(), TripResponse.class);
@@ -97,8 +97,8 @@ public class InfoTrechoClient extends GenericClient {
         try (Response response = this.getHttpClient().newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 String errorResponse = response.body().string();
-                log.error("==== Erro retornado da InfoTrechoPAI. Code: {} Response: {}", response.code(), errorResponse);
-                throw new RuntimeException("Erro ao executar endpoint trips");
+                log.error("==== Erro retornado da InfoTrechoAPI. Code: {} Response: {}", response.code(), errorResponse);
+                throw new RuntimeException("Erro ao executar endpoint events");
             } else {
                 return this.getObjectMapper().readValue(response.body().byteStream(), new TypeReference<List<EventResponse>>() {
                 });
