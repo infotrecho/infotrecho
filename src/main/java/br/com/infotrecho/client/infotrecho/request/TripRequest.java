@@ -12,6 +12,8 @@ public class TripRequest {
     private String messengerId;
     private String origin;
     private String destination;
+    private String originRegionCode;
+    private String destinationRegionCode;
     @JsonProperty("origin_geocode")
     private List<BigDecimal> originGeocode;
     @JsonProperty("destination_geocode")
