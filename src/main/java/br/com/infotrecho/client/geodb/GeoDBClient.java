@@ -5,6 +5,7 @@ import br.com.infotrecho.client.geodb.response.GeoDbCitiesResponse;
 import lombok.extern.log4j.Log4j2;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
+import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,7 @@ public class GeoDBClient extends GenericClient {
 
     public GeoDbCitiesResponse getCitiesData(String city) throws IOException {
 
-        final var url = new HttpUrl.Builder()
+        final HttpUrl url = new HttpUrl.Builder()
                 .scheme(geoDBConfig.getScheme())
                 .host(geoDBConfig.getDomain())
                 .addPathSegment(geoDBConfig.getVersion())
@@ -32,13 +33,13 @@ public class GeoDBClient extends GenericClient {
                 .addQueryParameter("namePrefix", city)
                 .build();
 
-        var request = new Request.Builder()
+        Request request = new Request.Builder()
                 .addHeader("X-RapidAPI-Key", geoDBConfig.getApiKey())
                 .url(url)
                 .get()
                 .build();
 
-        try (var response = this.getHttpClient().newCall(request).execute()) {
+        try (Response response = this.getHttpClient().newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 String errorResponse = response.body().string();
                 log.error("==== Erro retornado da GeoDBPAI. Code: {} Response: {}", response.code(), errorResponse);

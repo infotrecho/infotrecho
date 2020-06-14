@@ -9,6 +9,7 @@ import lombok.extern.log4j.Log4j2;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,20 +26,20 @@ public class InfoTrechoClient extends GenericClient {
     }
 
     public DriverResponse saveDriver(DriverRequest driverRequest) throws IOException {
-        final var url = new HttpUrl.Builder()
+        final HttpUrl url = new HttpUrl.Builder()
                 .scheme(infoTrechoConfig.getScheme())
                 .host(infoTrechoConfig.getDomain())
                 .addPathSegment(infoTrechoConfig.getContext())
                 .addPathSegment(InfoTrechoConfig.DRIVERS_PATH)
                 .build();
 
-        var request = new Request.Builder()
+        Request request = new Request.Builder()
                 .url(url)
                 .post(RequestBody.create(MEDIA_TYPE_JSON, this.getObjectMapper().writeValueAsString(driverRequest)))
                 .build();
 
 
-        try (var response = this.getHttpClient().newCall(request).execute()) {
+        try (Response response = this.getHttpClient().newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 String errorResponse = response.body().string();
                 log.error("==== Erro retornado da InfoTrechoPAI. Code: {} Response: {}", response.code(), errorResponse);
@@ -50,20 +51,20 @@ public class InfoTrechoClient extends GenericClient {
     }
 
     public TripResponse saveTrip(TripRequest tripRequest) throws IOException {
-        final var url = new HttpUrl.Builder()
+        final HttpUrl url = new HttpUrl.Builder()
                 .scheme(infoTrechoConfig.getScheme())
                 .host(infoTrechoConfig.getDomain())
                 .addPathSegment(infoTrechoConfig.getContext())
                 .addPathSegment(InfoTrechoConfig.TRIPS_PATH)
                 .build();
 
-        var request = new Request.Builder()
+        Request request = new Request.Builder()
                 .url(url)
                 .post(RequestBody.create(MEDIA_TYPE_JSON, this.getObjectMapper().writeValueAsString(tripRequest)))
                 .build();
 
 
-        try (var response = this.getHttpClient().newCall(request).execute()) {
+        try (Response response = this.getHttpClient().newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 String errorResponse = response.body().string();
                 log.error("==== Erro retornado da InfoTrechoPAI. Code: {} Response: {}", response.code(), errorResponse);
