@@ -16,11 +16,12 @@ import java.io.IOException;
 
 @Slf4j
 @RestController
-public class DriversController {
+@RequestMapping("/infotrecho")
+public class InfoTrechoController {
 
     private final DriversService driversService;
 
-    public DriversController(DriversService driversService) {
+    public InfoTrechoController(DriversService driversService) {
         this.driversService = driversService;
     }
 
