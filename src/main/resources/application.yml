@@ -1,14 +1,11 @@
 server:
   port: 9090
 
-messenger4j:
-  appSecret: ${MESSENGER_APP_SECRET:e253895f02d39f47a55a8abbf975de7a}
-  verifyToken: ${MESSENGER_VERIFY_TOKEN:boaviagem123}
-  pageAccessToken: ${MESSENGER_PAGE_ACCESS_TOKEN:EAAIbSFaa56YBANl1N74U5TUbM0lpslxEC07u8t2C7ZB7Ip2lcOHNwwOvLepZB4QzascL8oh4eGNB1ARnlpThCtQbuyRStTWzsS3m6XMybzU8pGVO4E7eqXXbIHxjmKQZCXQRtfdYntXrpWoFXwG6ZCnynLxZCZBeBTkjNKo2zzrp4ReEKZBkt4OOANTHczAGs0ZD}
-
-logging:
-  level:
-    com.github.messenger4j: debug
+geodb:
+  scheme: https
+  domain: wft-geo-db.p.rapidapi.com
+  api-key: <API-KEY>
+  version: v1
 
 spring:
   datasource:
