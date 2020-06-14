@@ -1,6 +1,6 @@
 package br.com.infotrecho.config;
 
-import com.squareup.okhttp.OkHttpClient;
+import okhttp3.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class OkHttpClientFactory {
     @Bean
     public OkHttpClient OkHttpClientFactory() {
-        return new OkHttpClient();
+
+        return new OkHttpClient().newBuilder().followRedirects(true).build();
     }
 }
