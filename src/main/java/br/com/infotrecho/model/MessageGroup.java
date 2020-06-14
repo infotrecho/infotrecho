@@ -54,18 +54,25 @@ public class MessageGroup {
                 private PayloadType templateType;
                 private String text;
                 private List<Button> buttons;
-                private Elements elements;
+                private List<Element> elements;
 
                 @Data
                 @Builder
                 @AllArgsConstructor
                 @NoArgsConstructor
                 @JsonInclude(JsonInclude.Include.NON_NULL)
-                public static class Elements {
+                public static class Element {
 
                     private MediaType type;
                     private String url;
                     private List<Button> buttons;
+
+                    public void addButton(Button button) {
+                        if (this.buttons == null) {
+                            this.buttons = new ArrayList<>();
+                        }
+                        this.buttons.add(button);
+                    }
                 }
 
                 @Data
@@ -81,10 +88,17 @@ public class MessageGroup {
                 }
 
                 public void addButton(Button button) {
-                    if (buttons == null) {
-                        buttons = new ArrayList<>();
+                    if (this.buttons == null) {
+                        this.buttons = new ArrayList<>();
                     }
-                    buttons.add(button);
+                    this.buttons.add(button);
+                }
+
+                public void addElement(Element element) {
+                    if (elements == null) {
+                        elements = new ArrayList<>();
+                    }
+                    elements.add(element);
                 }
             }
         }
@@ -100,6 +114,15 @@ public class MessageGroup {
             private String url;
             private ButtonType buttonType;
 
+        }
+
+        public void addQuickReply(QuickReply quickReply) {
+
+            if (this.quickReplies == null) {
+                quickReplies = new ArrayList<>();
+            }
+
+            quickReplies.add(quickReply);
         }
     }
 }

@@ -4,7 +4,10 @@ import br.com.infotrecho.client.infotrecho.request.DriverRequest;
 import br.com.infotrecho.client.infotrecho.request.TripRequest;
 import br.com.infotrecho.client.infotrecho.response.DriverResponse;
 import br.com.infotrecho.client.infotrecho.response.TripResponse;
+import br.com.infotrecho.model.MessageGroup;
+import br.com.infotrecho.service.BotService;
 import br.com.infotrecho.service.DriversService;
+import br.com.infotrecho.service.InteractiveService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,13 +24,17 @@ public class InfoTrechoController {
 
     private final DriversService driversService;
 
-    public InfoTrechoController(DriversService driversService) {
+    private final InteractiveService interactiveService;
+
+    public InfoTrechoController(DriversService driversService, InteractiveService interactiveService) {
         this.driversService = driversService;
+        this.interactiveService = interactiveService;
     }
 
     @PostMapping("/drivers")
-    public ResponseEntity<DriverResponse> saveDriver(@RequestBody final DriverRequest driverRequest) throws IOException {
-        return ResponseEntity.ok(driversService.saveDriver(driverRequest));
+    public ResponseEntity<MessageGroup> saveDriver(@RequestBody final DriverRequest driverRequest) throws IOException {
+        driversService.saveDriver(driverRequest);
+        return ResponseEntity.ok(interactiveService.afterSave());
     }
 
     @PostMapping("/trips")

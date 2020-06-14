@@ -70,8 +70,8 @@ public class BotController {
         return ResponseEntity.ok(botService.askToColaboratte());
     }
 
-    @GetMapping("/end")
-    public ResponseEntity<MessageGroup> end() {
+    @GetMapping("/ending")
+    public ResponseEntity<MessageGroup> ending() {
         return ResponseEntity.ok(botService.ending());
     }
 }
