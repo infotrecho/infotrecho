@@ -10,6 +10,7 @@ public class InfoTrechoConfig {
 
     public final static String DRIVERS_PATH = "drivers";
     public final static String TRIPS_PATH = "trips";
+    public final static String EVENT_PATH = "events";
 
     @Value("${infotrecho.scheme}")
     private String scheme;
