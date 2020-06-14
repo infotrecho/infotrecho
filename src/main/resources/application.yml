@@ -4,7 +4,7 @@ server:
 geodb:
   scheme: https
   domain: wft-geo-db.p.rapidapi.com
-  api-key: <API-KEY>
+  api-key: ${API-KEY}
   version: v1
 
 infotrecho:
