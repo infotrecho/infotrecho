@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -41,7 +42,36 @@ public class BotController {
 
     @GetMapping("/ask-track-info")
     public ResponseEntity<MessageGroup> askTrackInfo() {
-        return ResponseEntity.ok(botService.trackAskInfo());
+        return ResponseEntity.ok(botService.askTrackInfo());
     }
 
+    @GetMapping("/ask-track-info-location")
+    public ResponseEntity<MessageGroup> askTrackInfoLocation() {
+        return ResponseEntity.ok(botService.askTrackInfoLocation());
+    }
+
+    @GetMapping("/ask-restaurants")
+    public ResponseEntity<MessageGroup> showRestaurants(@RequestParam String closer) {
+        return ResponseEntity.ok(botService.showRestaurants(closer));
+    }
+
+    @GetMapping("/show-restaurant-details")
+    public ResponseEntity<MessageGroup> showRestaurantDetails(@RequestParam String id) {
+        return ResponseEntity.ok(botService.showRestaurantDetails(id));
+    }
+
+    @GetMapping("/ask-information-ok")
+    public ResponseEntity<MessageGroup> askInformationOk() {
+        return ResponseEntity.ok(botService.askInformationOk());
+    }
+
+    @GetMapping("/ask-to-collaborate")
+    public ResponseEntity<MessageGroup> askToCollaborate() {
+        return ResponseEntity.ok(botService.askToColaboratte());
+    }
+
+    @GetMapping("/end")
+    public ResponseEntity<MessageGroup> end() {
+        return ResponseEntity.ok(botService.ending());
+    }
 }

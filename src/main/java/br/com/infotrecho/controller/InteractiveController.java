@@ -1,5 +1,6 @@
 package br.com.infotrecho.controller;
 
+import br.com.infotrecho.controller.request.UserRequest;
 import br.com.infotrecho.model.MessageGroup;
 import br.com.infotrecho.service.InteractiveService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +23,9 @@ public class InteractiveController {
         return ResponseEntity.ok(trackService.track());
     }
 
-    @PostMapping(value = "/save-city")
-    public ResponseEntity<MessageGroup> save(@RequestParam String start, @RequestParam String end) {
-        return ResponseEntity.ok(trackService.save(start, end));
+    @PostMapping(value = "/save-user")
+    public ResponseEntity<MessageGroup> save(@RequestBody UserRequest userRequest) {
+        return ResponseEntity.ok(trackService.save(userRequest));
     }
 
 }

@@ -46,15 +46,19 @@ public class MessageService {
         return new MessageGroup(messagesList);
     }
 
-    public void addButton(String text,  String destination) {
+    public void addButton(String text,  String destination, boolean isUrl) {
 
         payload.setTemplateType(PayloadType.BUTTON);
 
         MessageGroup.Messages.Attachment.Payload.Button button = new MessageGroup.Messages.Attachment.Payload.Button();
         button.setTitle(text);
-        button.setType(ButtonType.JSON_URL);
+        button.setType(isUrl ? ButtonType.URL : ButtonType.JSON_URL);
         button.setUrl(destination);
         payload.addButton(button);
+    }
+
+    public void addButton(String text,  String destination) {
+        addButton(text,  destination, false);
     }
 
     public MessageGroup getMessageGroup() {

@@ -30,6 +30,9 @@ public class MessageGroup {
         private Attachment attachment;
         private String text;
 
+        @JsonProperty("quick_replies")
+        private List<QuickReply> quickReplies;
+
         @Data
         @Builder
         @AllArgsConstructor
@@ -84,6 +87,19 @@ public class MessageGroup {
                     buttons.add(button);
                 }
             }
+        }
+
+        @Data
+        @Builder
+        @AllArgsConstructor
+        @NoArgsConstructor
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        public static class QuickReply {
+
+            private String title;
+            private String url;
+            private ButtonType buttonType;
+
         }
     }
 }
