@@ -4,6 +4,7 @@ import br.com.infotrecho.model.Location;
 import br.com.infotrecho.model.MessageGroup;
 import br.com.infotrecho.model.Restaurant;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +17,12 @@ public class BotService {
 
     private final CentralService centralService;
 
-    private String url = "http://96dc3da5fa0e.ngrok.io";
+    private final String context;
 
-    public BotService(MessageService messageService, CentralService centralService) {
+    public BotService(MessageService messageService, CentralService centralService, @Value("${context}") String context) {
         this.messageService = messageService;
         this.centralService = centralService;
+        this.context = context;
     }
 
     public MessageGroup welcomeMessage() {
@@ -36,9 +38,9 @@ public class BotService {
 
         messageService.startMessage();
         messageService.addText("Como posso te ajudar?");
-        messageService.addButton("Informar ocorrência", url + "/bot/end");
-        messageService.addButton("Informações do trecho", url + "/bot/ask-start");
-        messageService.addButton("Informações de saúde", url + "/bot/end");
+        messageService.addButton("Informar ocorrência", context + "/bot/end");
+        messageService.addButton("Informações do trecho", context + "/bot/ask-start");
+        messageService.addButton("Informações de saúde", context + "/bot/end");
 
         return messageService.getMessageGroup();
     }
@@ -62,9 +64,9 @@ public class BotService {
 
         messageService.startMessage();
         messageService.addText("Que tipo de informação você gostaria de saber?");
-        messageService.addButton("Postos e Restaurantes", url + "/bot/ask-track-info-location");
-        messageService.addButton("Pontos de pernoite", url + "/bot/end");
-        messageService.addButton("Serviços públicos", url + "/bot/end");
+        messageService.addButton("Postos e Restaurantes", context + "/bot/ask-track-info-location");
+        messageService.addButton("Pontos de pernoite", context + "/bot/end");
+        messageService.addButton("Serviços públicos", context + "/bot/end");
 
         return messageService.getMessageGroup();
     }
@@ -74,8 +76,8 @@ public class BotService {
 
         messageService.startMessage();
         messageService.addText("Onde?");
-        messageService.addButton("Na cidade", url + "/bot/ask-restaurants?closer=city");
-        messageService.addButton("No percurso", url + "/bot/ask-restaurants?closer=route");
+        messageService.addButton("Na cidade", context + "/bot/ask-restaurants?closer=city");
+        messageService.addButton("No percurso", context + "/bot/ask-restaurants?closer=route");
 
         return messageService.getMessageGroup();
     }
@@ -87,9 +89,9 @@ public class BotService {
 
         messageService.startMessage();
         messageService.addText("Estes são os postos e restaurantes que recomendamos no seu trecho:");
-        messageService.addButton(locations.get(0).getName(), url + "/bot/show-restaurant-details?id=" + locations.get(0).getId());
-        messageService.addButton(locations.get(1).getName(), url + "/bot/show-restaurant-details?id=" + locations.get(0).getId());
-        messageService.addButton(locations.get(2).getName(), url + "/bot/show-restaurant-details?id=" + locations.get(0).getId());
+        messageService.addButton(locations.get(0).getName(), context + "/bot/show-restaurant-details?id=" + locations.get(0).getId());
+        messageService.addButton(locations.get(1).getName(), context + "/bot/show-restaurant-details?id=" + locations.get(0).getId());
+        messageService.addButton(locations.get(2).getName(), context + "/bot/show-restaurant-details?id=" + locations.get(0).getId());
 
         return messageService.getMessageGroup();
     }
@@ -103,8 +105,8 @@ public class BotService {
         messageService.startMessage();
         messageService.addText("[" + restaurant.getName() + "] " + restaurant.getAddress() + " " + restaurant.getRanking() + "/5");
         messageService.addButton("Ir para Google Maps", "https://www.google.com.br/maps/@" + restaurant.getLatitude() + "," + restaurant.getLongitude(), true);
-        messageService.addButton("Compartilhar a localização", url + "/bot/ask-information-ok");
-        messageService.addQuickReply("Continuar", url + "/bot/ask-information-ok");
+        messageService.addButton("Compartilhar a localização", context + "/bot/ask-information-ok");
+        messageService.addQuickReply("Continuar", context + "/bot/ask-information-ok");
 
         return messageService.getMessageGroup();
     }
@@ -114,8 +116,8 @@ public class BotService {
 
         messageService.startMessage();
         messageService.addText("As informações foram úteis?");
-        messageService.addButton("Sim :)", url + "/bot/ask-to-collaborate");
-        messageService.addButton("Não :(", url + "/bot/ask-to-collaborate");
+        messageService.addButton("Sim :)", context + "/bot/ask-to-collaborate");
+        messageService.addButton("Não :(", context + "/bot/ask-to-collaborate");
 
         return messageService.getMessageGroup();
     }
@@ -125,8 +127,8 @@ public class BotService {
 
         messageService.startMessage();
         messageService.addText("Sabia que colaborando com informações novas sobre o trecho você ganha pontos que valem prêmios?");
-        messageService.addButton("Colaborar", url + "/bot/ending");
-        messageService.addButton("Encerrar", url + "/bot/ending");
+        messageService.addButton("Colaborar", context + "/bot/ending");
+        messageService.addButton("Encerrar", context + "/bot/ending");
 
         return messageService.getMessageGroup();
     }

@@ -19,12 +19,18 @@ public class CentralService {
         //find restaurant in central
         return Arrays.asList(
                 Location.builder().id("1").name("Restaurante do Nardão").build(),
-                Location.builder().id("2").name("Restaurante e posto Graal").build(),
-                Location.builder().id("3").name("Restaurante Frango Frito").build());
+                Location.builder().id("2").name("Restaurante Graal").build(),
+                Location.builder().id("3").name("Posto Frango Frito").build());
     }
 
     public Restaurant findRestaurant(String id) {
-        //find restaurant in central
-        return Restaurant.builder().name("Restaurante do Nardão").address("Rua Maranhão, 1212 - Centro - Araraquara, SP").latitude("12.4564841").longitude("02.545645645").ranking(2).build();
+        if (id.equalsIgnoreCase("2")) {
+            return Restaurant.builder().name("Restaurante Graal").address("Rua Manacas Almeida, 12 - Centro - Araraquara, SP").latitude("12.4564841").longitude("02.545645645").ranking(2).build();
+        }
+        if (id.equalsIgnoreCase("3")) {
+            return Restaurant.builder().name("Posto Frango Frito").address("Rua 7, 88 - Centro - Araraquara, SP").latitude("12.4564841").longitude("02.545645645").ranking(2).build();
+        }
+
+        return Restaurant.builder().name("Restaurante do Nardão").address("Rua Abreu, 633 - Centro - Araraquara, SP").latitude("12.4564841").longitude("02.545645645").ranking(2).build();
     }
 }

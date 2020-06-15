@@ -1,6 +1,8 @@
 server:
   port: 9090
 
+context: https://infotrecho.herokuapp.com
+
 geodb:
   scheme: https
   domain: wft-geo-db.p.rapidapi.com
