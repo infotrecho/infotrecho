@@ -38,9 +38,9 @@ public class BotService {
 
         messageService.startMessage();
         messageService.addText("Como posso te ajudar?");
-        messageService.addButton("Informar ocorrência", context + "/bot/end");
+        messageService.addButton("Informar ocorrência", context + "/bot/ask-start");
         messageService.addButton("Informações do trecho", context + "/bot/ask-start");
-        messageService.addButton("Informações de saúde", context + "/bot/end");
+        messageService.addButton("Informações de saúde", context + "/bot/ask-start");
 
         return messageService.getMessageGroup();
     }
@@ -65,8 +65,8 @@ public class BotService {
         messageService.startMessage();
         messageService.addText("Que tipo de informação você gostaria de saber?");
         messageService.addButton("Postos e Restaurantes", context + "/bot/ask-track-info-location");
-        messageService.addButton("Pontos de pernoite", context + "/bot/end");
-        messageService.addButton("Serviços públicos", context + "/bot/end");
+        messageService.addButton("Pontos de pernoite", context + "/bot/ending");
+        messageService.addButton("Serviços públicos", context + "/bot/ending");
 
         return messageService.getMessageGroup();
     }
